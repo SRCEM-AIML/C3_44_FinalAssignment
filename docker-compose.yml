@@ -1,0 +1,21 @@
+version: '3'
+
+services:
+  flask:
+    build:
+      context: ./flask_app
+    ports:
+      - "5000:5000"
+    depends_on:
+      - django
+
+  django:
+    build:
+      context: ./django_app
+    ports:
+      - "8080:8000"
+    volumes:
+      - ./django_app:/app
+    environment:
+      DEBUG: "True"
+
